@@ -1,0 +1,9 @@
+name: train-procgen
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python>=3.6
+  - pyyaml
+  - pandas
+  - tensorboard==2.5
