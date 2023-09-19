@@ -2,8 +2,13 @@ name: train-procgen
 channels:
   - defaults
   - conda-forge
+  - pytorch
 dependencies:
   - python>=3.6
+  - pytorch=1.13.*
   - pyyaml
   - pandas
   - tensorboard==2.5
+  - pip:
+    - gym3
+    - git+https://github.com/JacobPfau/procgenAISC
