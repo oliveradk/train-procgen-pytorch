@@ -15,7 +15,10 @@ RUN --mount=type=cache,target=/var/cache/apt \
     && apt-get install -y build-essential \ 
     && apt-get install -y libx11-dev \ 
     && apt-get install -y cmake --no-install-recommends \ 
-    && apt-get install -y qt5-default
+    && apt-get install -y qt5-default \ 
+    && apt-get install -y libjpeg-dev \ 
+    && apt-get install -y libpng-dev \
+    && apt-get install -y xvfb
 
 # create environment
 COPY environment.yml .

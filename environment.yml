@@ -6,9 +6,12 @@ channels:
 dependencies:
   - python>=3.6
   - pytorch=1.13.*
+  - torchvision
   - pyyaml
   - pandas
+  - matplotlib
   - tensorboard==2.5
+  - tqdm
   - pip:
     - gym3
     - git+https://github.com/JacobPfau/procgenAISC

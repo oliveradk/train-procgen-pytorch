@@ -74,7 +74,7 @@ if __name__=='__main__':
     logfile = os.path.join(logpath, f"metrics_agent_seed_{args.agent_seed}.csv")
     print(f"Saving metrics to {logfile}.")
     print(f"Running coinrun with random_percent={args.random_percent}...")
-    for env_seed in tqdm(seeds, disable=True):
+    for env_seed in tqdm(seeds, disable=False):
         run_env(exp_name=args.exp_name,
             logfile=logfile,
             model_file=path_to_model_file,
