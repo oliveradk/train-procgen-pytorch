@@ -1,3 +1,23 @@
+# Instructions for Reproducing Experiments
+
+```
+git clone https://github.com/oliveradk/train-procgen-pytorch.git
+cd train-procgen-pytorch
+docker build . -t train_procgen
+cd ..
+docker run --gpus all -it -v ./train-procgen-pytorch/:/home/train-procgen-pytorch train_procgen
+cd home/train-procgen-pytorch
+conda activate train-procgen
+```
+
+## Training
+`python train.py --exp_name coinrun --env_name coinrun --num_levels 100000 --distribution_mode hard --param_name hard-500 --num_timesteps 200000000 --num_checkpoints 5 --seed 6033 --random_percent 0`
+## Eval
+`bash experiments/scripts/get_fig2_data_odk.sh`
+- TODO: add plotting 
+- TODO: add baseline (random percent=0)
+
+Below is the original README
 # Training code for Goal Misgeneralization in Deep Reinforcement Learning
 
 This code is based on a fork of [this repository](https://github.com/joonleesky/train-procgen-pytorch) by Hojoon Lee.
