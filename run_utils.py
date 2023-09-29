@@ -9,7 +9,8 @@ from common import set_global_seeds, set_global_log_levels
 from pathlib import Path
 import os, time, yaml
 import gym
-from procgen import ProcgenEnv
+from gym3 import VideoRecorderWrapper, ToBaselinesVecEnv
+from procgen import ProcgenGym3Env
 import torch
 import csv
 import numpy as np
@@ -26,6 +27,7 @@ def load_env_and_agent(exp_name,
                        device="cpu",
                        gpu_device=0,
                        random_percent=0,
+                       vid_dir=None,
                        logdir=None,
                        num_threads=10):
 
@@ -51,13 +53,17 @@ def load_env_and_agent(exp_name,
     ## ENVIRONMENT ##
     #################
     def create_venv(hyperparameters):
-        venv = ProcgenEnv(num_envs=num_envs,
+        venv = ProcgenGym3Env(num=num_envs,
                         env_name=env_name,
                         num_levels=num_levels,
                         start_level=int(start_level),
                         distribution_mode=distribution_mode,
                         num_threads=num_threads,
                         random_percent=random_percent)
+        if vid_dir:
+            venv = VideoRecorderWrapper(venv, directory=vid_dir,
+                                        ob_key="rgb", info_key=None, fps=15)
+        venv = ToBaselinesVecEnv(venv)
         venv = VecExtractDictObs(venv, "rgb")
         normalize_rew = hyperparameters.get('normalize_rew', True)
         if normalize_rew:

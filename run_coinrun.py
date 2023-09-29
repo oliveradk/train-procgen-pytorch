@@ -30,7 +30,7 @@ if __name__=='__main__':
 
     #render parameters
     parser.add_argument('--num_envs', type=int, default=1)
-    parser.add_argument('--vid_dir', type=str, default=None)
+    parser.add_argument("--log_video",        type=bool, default = False, help='whether to log video for each run')
     parser.add_argument('--model_file', type=str, help="Can be either a path to a model file, or an "
                                        "integer. Integer is interpreted as random_percent in training")
 
@@ -72,6 +72,11 @@ if __name__=='__main__':
         f.write(time.strftime("%Y-%m-%d %H:%M:%S") + f", modelfile {path_to_model_file}\n")
 
     logfile = os.path.join(logpath, f"metrics_agent_seed_{args.agent_seed}.csv")
+    if args.log_video:
+        vid_dir = os.path.join(logpath, "video")
+        os.makedirs(vid_dir)
+    else:
+        vid_dir = None
     print(f"Saving metrics to {logfile}.")
     print(f"Running coinrun with random_percent={args.random_percent}...")
     for env_seed in tqdm(seeds, disable=False):
@@ -82,4 +87,5 @@ if __name__=='__main__':
             device=args.device,
             gpu_device=args.gpu_device,
             random_percent=args.random_percent,
-            reset_mode=args.reset_mode)
+            reset_mode=args.reset_mode,
+            vid_dir=vid_dir)
