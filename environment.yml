@@ -12,6 +12,7 @@ dependencies:
   - matplotlib
   - tensorboard==2.5
   - tqdm
+  - imageio[ffmpeg]
   - pip:
     - gym3
     - git+https://github.com/JacobPfau/procgenAISC
