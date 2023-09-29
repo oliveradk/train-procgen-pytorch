@@ -14,7 +14,8 @@ conda activate train-procgen
 `python train.py --exp_name coinrun --env_name coinrun --num_levels 100000 --distribution_mode hard --param_name hard-500 --num_timesteps 200000000 --num_checkpoints 5 --seed 6033 --random_percent 0`
 ## Eval
 `bash experiments/scripts/get_fig2_data_odk.sh`
-- TODO: add plotting 
+## Plot 
+`python experiments/scripts/plot-figure2_bar_odk.py`
 - TODO: add baseline (random percent=0)
 
 Below is the original README
